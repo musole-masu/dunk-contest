@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dunk-mongo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dunk-mongo
+  template:
+    metadata:
+      labels:
+        app: dunk-mongo
+    spec:
+      containers:
+        - name: dunk-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dunk-mongo-service
+spec:
+  selector:
+    app: dunk-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

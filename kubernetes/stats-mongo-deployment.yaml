@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stats-mongo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stats-mongo
+  template:
+    metadata:
+      labels:
+        app: stats-mongo
+    spec:
+      containers:
+        - name: stats-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stats-mongo-service
+spec:
+  selector:
+    app: stats-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017
