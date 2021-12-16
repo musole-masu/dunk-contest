@@ -15,16 +15,3 @@ spec:
       containers:
         - name: stats-mongo
           image: mongo
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: stats-mongo-service
-spec:
-  selector:
-    app: stats-mongo
-  ports:
-    - name: db
-      protocol: TCP
-      port: 27017
-      targetPort: 27017

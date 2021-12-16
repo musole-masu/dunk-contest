@@ -10,17 +10,12 @@ class NatsConnector {
     return this._client;
   }
 
-  connect(
-    clusterId: string,
-    clientId: string,
-    url: string,
-    applicationName: string
-  ) {
+  connectToNats(clusterId: string, clientId: string, url: string) {
     this._client = nats.connect(clusterId, clientId, { url });
 
     return new Promise<void>((resolve, reject) => {
       this.client.on("connect", () => {
-        console.log(`${applicationName} is connected to NATS Streaming Server`);
+        console.log(`DUNK SERVICE IS CONNECTED TO NATS STREAMING SERVER`);
         resolve();
       });
       this.client.on("error", (err) => {
