@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: statistic-service-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: statistic-service
+  template:
+    metadata:
+      labels:
+        app: statistic-service
+    spec:
+      containers:
+        - name: statistic-service
+          image: <Your Docker Hub Id>/statistic-service

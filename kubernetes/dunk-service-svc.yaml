@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dunk-service-svc
+spec:
+  selector:
+    app: dunk-service
+  type: ClusterIP
+  ports:
+    - name: dunk-service
+      protocol: TCP
+      port: 4001
+      targetPort: 4001

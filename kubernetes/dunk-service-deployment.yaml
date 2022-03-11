@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dunk-service-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dunk-service
+  template:
+    metadata:
+      labels:
+        app: dunk-service
+    spec:
+      containers:
+        - name: dunk-service
+          image: <Your Docker Hub Id>/dunk-service

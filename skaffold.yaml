@@ -1,0 +1,26 @@
+apiVersion: skaffold/v2alpha4
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./kubernetes/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: <Your Docker Hub Id>/dunk-service
+      context: dunk-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: <Your Docker Hub Id>/statistic-service
+      context: statistic-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
